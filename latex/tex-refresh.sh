@@ -2,7 +2,7 @@
 
 set -e
 
-echo -e "\e[34mRefreshin TeX and font databases...\e[0m"
+echo -e "\e[34mRefreshing TeX and font databases...\e[0m"
 
 sudo env PATH="$PATH" mktexlsr
 luaotfload-tool -fu
