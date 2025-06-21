@@ -29,6 +29,7 @@ end
 
 -- Create a specific number of files in a directory
 local subfile_snippet = [[
+%! TeX program = lualatex
 \documentclass[../main.tex]{subfiles}
 
 \begin{document}
