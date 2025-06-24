@@ -104,5 +104,6 @@ local dir = args.positional[1] or "exercises"
 local filename = args.positional[2] or "exercise"
 local num_files = tonumber(args.positional[3]) or 3
 
+ensure_directory_exists("figs") -- Create a figs directory if it doesn't exist
 create_files_in_dir(dir, filename, num_files)
 create_main_tex(dir, filename, num_files, args.options)
