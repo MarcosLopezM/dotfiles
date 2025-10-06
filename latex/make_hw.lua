@@ -28,8 +28,13 @@ local function ensure_directory_exists(dir)
 end
 
 -- Create .gitignore file template
-local function create_gitignore()
+local function create_gitignore(mk_gitignore)
 	local path = ".gitignore"
+
+	if not mk_gitignore then
+		return nil
+	end
+
 	local file = io.open(path, "r")
 	if file then
 		file:close()
@@ -442,8 +447,9 @@ local args = parse_args()
 local dir = args.positional[1] or "exercises"
 local filename = args.positional[2] or "exercise"
 local num_files = tonumber(args.positional[3]) or 3
+local make_gitignore = args.positional[4] == "true"
 
 ensure_directory_exists("figs") -- Create a figs directory if it doesn't exist
-create_gitignore()
+create_gitignore(make_gitignore)
 create_files_in_dir(dir, filename, num_files)
 create_main_tex(dir, filename, num_files, args.options)
