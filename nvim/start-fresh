@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+date = $(date +"%d-%m-%Y")
+
+echo -e "\e[34mDeleting all NVim related files\e[0m"
+
+if [-d ~/.config/nvim]; then
+  echo -e "\e[33mBacking up config to ~/.config/nvim-$date\e[0m"
+  mv ~/.config/nvim ~/.config/nvim.$date
+fi
+
+rm -rf ~/.local/share/nvim \
+       ~/.local/state/nvim \
+       ~/.cache/nvim
+
+echo -e "\e[34mReinstalling Neovim via bob\e[0m"
+
+bob erase
+bob install stable
+bob use stable
+
+echo -e "\e[32mNeovim reinstalled successfully.\e[0m"
+nvim --version | head -n 1
